@@ -21,20 +21,15 @@
 
 `place_python` 需要已编译可用的 DREAMPlace CPU 算子；`feature_python` 安装本工具的依赖。OpenROAD 需要匹配此 OpenROAD-3D flow；本次实际验证使用 c8e73fe7。旧版本缺少 endpoint 专用 slack API 时仅在端点求和与 TNS 闭合后接受结果，不能强行回填。
 
-## 获取真实 2D 设计
+## 准备 2D 设计
 
-```bash
-paris project fetch --source chipbench --design or1200 \
-  --revision ea28bebab06977b348a74d3fd07275bb828ca68e --output ./or1200-source
-```
-
-导入器保存源版本、Git blob 和 SHA256 校验、RTL、工艺文件、约束及 `PARIS_PROJECT.json`。该清单的 `partition.count` 控制候选预算，`partition.seed` 控制随机种子。配套文件的路径都相对于工程根目录。自行准备的工程也使用这一格式；不会执行下载的 Makefile。
+工程目录包含RTL/网表、LEF、Liberty、SDC及`PARIS_PROJECT.json`。清单中的`partition.count`控制候选预算，`partition.seed`控制随机种子，文件路径相对于工程根目录。
 
 ## 一条命令准备数据
 
 ```bash
-paris project run --project ./or1200-source --settings ./native.json --output ./or1200-prepared
-paris predict --model ./shared-model --dataset ./or1200-prepared/dataset --output ./ranking.csv
+paris project run --project ./my-source --settings ./native.json --output ./prepared
+paris predict --model ./shared-model --dataset ./prepared/dataset --output ./ranking.csv
 ```
 
 数据准备依次运行预处理、分割、物理流程、特征提取，止于 GR。各阶段保留日志、进度、检查点与哈希；已存在的输出目录不会覆盖。CPU 两个并行候选，每个 EDA 任务最多两线程。
@@ -69,20 +64,13 @@ paris ui --workspace ./workspace --root /data/projects \
 DR 是独立阶段，用于验证或自训练的数据预算，不是每次 PARIS 推理都执行：
 
 ```bash
-paris project route --gr-run ./or1200-prepared/physical/runs/<candidate-id> \
-  --route-iterations 1 --output ./or1200-dr/<candidate-id>
+paris project route --gr-run ./prepared/physical/runs/<candidate-id> \
+  --route-iterations 1 --output ./dr/<candidate-id>
 ```
 
 之后通过现有 `paris collect --stage labels --config project.yaml` 导入 DR 检查点，运行 OpenRCX 与 STA 并检查端点 TNS 闭合。GR 特征与 DR 标签分开保存，预测输入不读取目标 DR。完整标签表需与原有完整候选特征按 design/candidate_id 对齐后用于训练。
 
-本次 or1200 源配置使用 `-droute_end_iter 1`，其输出仍有 DRC；相应 TNS 是该布线预算下的基准标签，不代表 DRC 清零后的签核结果。增加布线迭代需要独立新目录及统一评测协议。
-
-## 已执行验证
-
-- 真实 or1200 工程：26,427 个实例、36 个存储宏，12 个固定分割候选已完成 GR 与全特征生成。
-- 独立网页运行：2 个真实候选从 RTL 到排序，预处理与 GR 特征 250 秒、推理约 1 秒；无模拟数据。
-- 单元与集成检查：63 项通过。
-- 12 例冻结跨设计预测在 DR 标签生成前封存；DR 标签收齐后独立生成评分与散点图。
+DR预算由`--route-iterations`指定。应在统一布线预算下比较标签；残余DRC不代表签核完成。
 
 上游：[ChiPBench](https://github.com/MIRALab-USTC/ChiPBench)、[Open3DBench](https://github.com/lamda-bbo/Open3DBench)。
 

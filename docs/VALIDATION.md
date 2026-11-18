@@ -1,18 +1,12 @@
-# 0.8.0交付验证
+# Release validation
 
-在独立Linux目录安装本仓库，使用随包源码重新编译CPU DREAMPlace，并运行以下检查：
-
-| 检查 | 结果 |
+| Check | Result |
 |---|---|
-| 自动测试 | 71项通过 |
-| CLI与网页真实预测 | 7个design、14候选，全部预测一致 |
-| 五组评测重放 | 35个模型预测逐值一致，105个τ-b相同 |
-| 五组从头重训 | 35个模型重新选参和拟合，预测逐值一致 |
-| 安装包 | wheel构建、独立安装及14候选预测通过 |
-| 原始RTL端到端 | or1200、seed73、2候选，综合→分割→布局→CTS→GR→864列特征→预测完成 |
-| 物理与回执 | 112项输入/输出hash通过；每候选36宏几何检查通过 |
-| 时序闭合 | CTS/GR端点求和与STA TNS误差均小于0.000014ns |
+| Automated tests | 71 passed |
+| CLI and web predictions | 14 candidates across seven designs; matching predictions |
+| Five-split replay | 35 models and 105 tau-b values reproduced |
+| Five-split retraining | Model selection and all predictions reproduced |
+| Installation package | Wheel build, separate installation and CLI prediction passed |
+| CPU placement build | DREAMPlace compiled from the bundled source |
 
-原始RTL示例耗时约262秒，使用已训练的or1200模型，未读取新候选DR标签。新design标定编排通过训练/预测隔离测试，测试中模拟EDA、实际拟合XGBoost；本次交付检查未另跑24例DR标定。
-
-首次独立运行发现缺少3D初始化脚本，失败输出保留；补齐源码后，在新输出目录完成上述端到端验证。机器无关的检查记录见 [validation/summary.json](validation/summary.json)。
+The new-design calibration orchestrator is tested for training/prediction isolation with mocked EDA and an actual XGBoost fit. Machine-independent records are in [validation/summary.json](validation/summary.json).

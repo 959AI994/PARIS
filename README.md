@@ -76,13 +76,13 @@ Follow [EDA setup](docs/EDA_SETUP.md) to build Place-MoL and configure OpenROAD 
 python scripts/configure.py --openroad /opt/OpenROAD/build/bin/openroad \
   --yosys /opt/yosys/yosys
 
-# Predict new candidates with an existing design model
-paris design --project examples/or1200-source --settings native.json \
-  --model models/or1200 --candidates 2 --seed 73 --output work/or1200-run
-
 # New design: use 24 of 36 candidates for DR calibration
 paris design --project my-source --settings native.json \
   --candidates 36 --label-budget 24 --output work/my-design
+
+# Predict further candidates with the trained design model
+paris design --project my-source --settings native.json \
+  --model work/my-design/model --candidates 20 --seed 29 --output work/my-design-next
 ```
 
 The bundled flow targets Nangate45 two-tier Memory-on-Logic designs. Other technologies require matching flow and library configurations. After configuration, the web interface also supports project-based data preparation.
@@ -102,7 +102,7 @@ Each split contains 1,000 training and 200 test candidates. The approximately 21
 ```text
 src/paris_tool/    CLI, web interface, models and data pipelines
 models/           Trained model bundles
-examples/         Candidate features and source project
+examples/         Candidate CTS/GR features
 configs/          Tool configuration templates
 scripts/          Build, configuration and launch utilities
 vendor/           Open3DBench components, Place-MoL and OpenROAD-3D
