@@ -24,21 +24,23 @@ python scripts/build_place.py --jobs 2
 
 可直接使用已有工具路径。验证版本与构建补丁在 `vendor/SOURCES.json` 和 `vendor/patches/`。
 
-从源码构建OpenROAD：
+在PARIS根目录开始，从源码构建OpenROAD：
 
 ```bash
+PARIS_REPO_ROOT="$(pwd)"
 git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD.git /opt/OpenROAD
 cd /opt/OpenROAD
 git checkout c8e73fe7e222fb93a80b7ecb7ea7cc83df2459ec
 git submodule update --init --recursive
 git -C src/sta checkout d1b2b3962cd47539c748bb163da5de2bd5d2f85f
 git -C third-party/slang-elab checkout ce38835520fbdf422304a6f6a2f1c437c3ba98c2
+git apply "$PARIS_REPO_ROOT/vendor/patches/OpenROAD-build.patch"
 # 安装该版本的构建依赖
 sudo ./etc/DependencyInstaller.sh -all
 ./etc/Build.sh -cmake-build -no-gui -threads=2
 ```
 
-已有环境若需要兼容性修改，可参考本仓库 `vendor/patches/OpenROAD-build.patch`；该补丁仅修改CMake头文件/库目标配置，不改时序算法。验证环境的OpenSTA为 `d1b2b3962cd47539c748bb163da5de2bd5d2f85f`。
+随包补丁仅修改CMake头文件/库目标配置，不改时序算法。验证环境的OpenSTA为 `d1b2b3962cd47539c748bb163da5de2bd5d2f85f`。
 
 Yosys使用 `1d2d777678f9f0856cb9d8a51d6d6447d4026c2f`，ABC为 `8827bafb7f288de6749dc6e30fa452f2040949c0`；也可配置兼容的已安装版本。
 
