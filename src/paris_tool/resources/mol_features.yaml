@@ -1,0 +1,31 @@
+schema_version: "2.0"
+feature_groups:
+  - legality_area
+  - dopp_proxy
+  - cut_topology
+  - hierarchy
+  - timing
+  - prototype_physical
+  - rudy
+relative_features: true
+missing_value: 0.0
+criticality:
+  top_percentiles: [0.01, 0.05, 0.10]
+  hbt_delay: 0.0
+  require_coverage: true
+  min_net_coverage: 0.001
+hierarchy:
+  pca_components: 12
+rudy:
+  enabled: true
+  grid_size: 64
+  capacity_per_bin: 1.0
+  save_heatmaps: false
+physical:
+  large_macro_area_percentile: 0.90
+  terminal_pitch: 1.0
+batch:
+  candidate_batch_size: 256
+  workers: 0
+output:
+  format: parquet

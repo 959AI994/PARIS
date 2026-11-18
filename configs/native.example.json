@@ -1,0 +1,8 @@
+{
+  "yosys": "/opt/yosys/yosys",
+  "openroad": "/opt/OpenROAD/build/bin/openroad",
+  "place_python": "../.venv/bin/python",
+  "feature_python": "../.venv/bin/python",
+  "place_mol_root": "../vendor/Place-MoL",
+  "flow_root": "../vendor/OpenROAD-3D/flow"
+}

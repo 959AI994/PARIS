@@ -1,0 +1,20 @@
+PARIS 0.8.0 — Copyright 2026 PARIS contributors.
+
+The PARIS CLI, web workspace and orchestration code are distributed under the
+root Apache-2.0 license. Bundled model weights and evaluation/example data are
+PARIS research artifacts; their candidate splits and provenance are retained.
+
+vendor/ contains the Open3DBench components actually used by this flow:
+Place-MoL, its DREAMPlace dependency, and the OpenROAD-3D scripts/platform.
+Source revisions, local adaptations and component notices are recorded in
+vendor/SOURCES.json. All upstream copyright/license files are retained in their
+respective directories. These third-party files are not relicensed by the
+PARIS root license. Place-LoL is not used by this Memory-on-Logic recipe.
+
+DREAMPlace and several of its components use BSD/MIT licenses. FLUTE retains
+its Attribution Assurance License, copyright Dr. Chris C. N. Chu. munkres-cpp
+retains its GPL license. The bundled Nangate45 platform retains its Apache
+license and original technology notices. See each component's LICENSE/COPYING.
+OpenROAD/OpenSTA and Yosys are configured external executables with their own
+licenses. No EDA executable, compiled placement operator or customer design is
+included in this source release.

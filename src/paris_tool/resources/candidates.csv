@@ -1,0 +1,3 @@
+design,candidate_id,cts_odb,cts_sdc,gr_odb,gr_sdc,gr_segments,gr_congestion,dr_odb,dr_sdc
+my_design,candidate_0001,./inputs/0001/cts.odb,./inputs/0001/cts.sdc,./inputs/0001/gr.odb,./inputs/0001/gr.sdc,./inputs/0001/route.segments,./inputs/0001/congestion.csv,,
+

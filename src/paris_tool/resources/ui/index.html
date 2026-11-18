@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="paris-token" content="__PARIS_TOKEN__">
+<title>PARIS · 候选质量评估</title>
+<link rel="stylesheet" href="/app.css"><script src="/app.js" defer></script>
+</head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="/" aria-label="PARIS 工作台"><span class="brand-mark">P<span>·</span></span><span>PARIS<small>候选质量评估</small></span></a>
+  <div class="side-label">工作流程</div>
+  <nav class="workflow-nav" aria-label="工作流程">
+    <button class="nav-step active" data-view="input"><span class="step-num">01</span><span>输入<small>设计与 GR 特征</small></span><span class="nav-dot" id="nav-input-dot"></span></button>
+    <button class="nav-step" data-view="process" disabled><span class="step-num">02</span><span>处理<small>PARIS推理</small></span><span class="nav-dot" id="nav-process-dot"></span></button>
+    <button class="nav-step" data-view="output" disabled><span class="step-num">03</span><span>输出<small>全部候选的质量排序</small></span><span class="nav-dot" id="nav-output-dot"></span></button>
+  </nav>
+  <div class="side-label iteration-label">模型管理</div><button class="nav-step iteration-nav" data-view="iterate"><span class="step-num">↻</span><span>PARIS 迭代<small>设计适配 · 验证 · 版本</small></span></button>
+  <button class="nav-step benchmark-nav" data-view="benchmark"><span class="step-num">▥</span><span>模型评测<small>Open3DBench · CTS / GR / PARIS</small></span></button>
+  <div class="side-label method-label">方法介绍</div>
+  <button class="nav-step method-nav" data-view="method"><span class="step-num">◇</span><span>PARIS 如何工作<small>特征 · 训练 · 预测 · 迭代</small></span></button>
+  <div class="recent-header"><span class="side-label">运行记录</span><span id="recent-count"></span></div>
+  <div id="recent-runs" class="recent-runs"><p class="side-empty">完成一次预测后，记录会保留在这里。</p></div>
+  <div class="side-footer"><span class="local-dot"></span> 本机 / 服务器计算<span id="package-version" class="version"></span></div>
+</aside>
+<main>
+  <header class="topbar"><div><span class="breadcrumb">工作台</span><span class="slash">/</span><span>候选质量排序</span></div><div class="topbar-right"><span class="model-badge">PARIS</span><button id="help-button" class="help-button" aria-label="查看输入输出说明">?</button></div></header>
+  <nav class="mobile-workflow" aria-label="工作流程导航"><button class="nav-step active" data-view="input"><span class="step-num">01</span> 输入</button><button class="nav-step" data-view="process" disabled><span class="step-num">02</span> 处理</button><button class="nav-step" data-view="output" disabled><span class="step-num">03</span> 输出</button><button class="nav-step" data-view="iterate"><span class="step-num">↻</span> 迭代</button><button class="nav-step" data-view="benchmark"><span class="step-num">▥</span> 评测</button><button class="nav-step" data-view="method"><span class="step-num">◇</span> 方法介绍</button></nav>
+  <div class="content">
+    <section id="view-input" class="view">
+      <div class="page-heading"><div class="eyebrow">INPUT / 输入</div><h1>从候选到完整排序</h1><p>导入原始设计并准备特征，或直接使用已有 CTS/GR 特征，比较候选的 post-route 相对质量。</p></div>
+      <div class="input-panel panel">
+        <div class="panel-heading"><h2>准备预测输入</h2><span id="input-status" class="status-chip neutral">待检查</span></div>
+        <form id="input-form">
+          <div class="field-block"><label for="model-path"><span class="field-number">1</span>模型</label><p class="field-description">选择当前设计的PARIS模型。</p><div class="path-field"><input id="model-path" name="model" placeholder="模型目录，或 .tar.gz 模型包" autocomplete="off" spellcheck="false" required><button type="button" class="browse-button" data-browse="model">浏览目录 <span>↗</span></button></div><div id="model-detail" class="model-detail hidden"></div></div>
+          <div class="input-modes" role="tablist" aria-label="输入类型"><button type="button" role="tab" aria-selected="true" class="input-mode active" data-input-mode="features">已有特征<small>直接检查并预测</small></button><button type="button" role="tab" aria-selected="false" class="input-mode" data-input-mode="raw">原始网表 / 工程<small>2D → 3D → CTS / GR → 特征</small></button></div>
+          <div id="prepared-input"><div class="field-block"><label for="dataset-path"><span class="field-number">2</span>候选数据</label><p class="field-description">选择包含 GR 特征的数据目录。</p><div class="path-field"><input id="dataset-path" name="dataset" placeholder="包含三个 Parquet 输入表的目录" autocomplete="off" spellcheck="false" required><button type="button" class="browse-button" data-browse="dataset">浏览目录 <span>↗</span></button></div>
+          <div class="file-list" id="file-list">
+            <div class="file-row"><span class="file-icon">▤</span><div><strong>features.parquet</strong><small>候选的 CTS/GR 特征与端点摘要</small></div><span class="file-state">待检查</span></div>
+            <div class="file-row"><span class="file-icon">▤</span><div><strong>source_sink.parquet</strong><small>GR 线网连接、延迟与 slew 特征</small></div><span class="file-state">待检查</span></div>
+            <div class="file-row"><span class="file-icon">▤</span><div><strong>net_load.parquet</strong><small>GR 线网的 R/C 与负载特征</small></div><span class="file-state">待检查</span></div>
+          </div><button type="button" class="text-button" id="inspect-features">查看此目录的特征清单 →</button></div></div>
+          <div id="raw-input" class="hidden">
+            <div class="field-block"><label for="project-path"><span class="field-number">2</span>原始设计工程</label><p class="field-description">上传 2D / 3D 网表或工程 ZIP，也可选择已有工程；配套 LEF、Liberty、SDC 后，完成上下层分割、布局与特征生成。</p><div class="path-field"><input id="project-path" placeholder="包含 PARIS_PROJECT.json 的工程目录" autocomplete="off" spellcheck="false"><button type="button" class="browse-button" data-browse="project">浏览目录 <span>↗</span></button></div>
+              <div class="raw-import-actions"><label class="button secondary upload-button" for="raw-upload">上传网表 / ZIP <span>↑</span></label><input id="raw-upload" class="file-upload" type="file" accept=".zip,.v,.sv,.def"><button type="button" class="text-button" id="project-template">下载工程配置模板</button><small>≤256 MiB；大工程使用服务器目录</small></div>
+              <p class="raw-profile" id="raw-profile">正在检查工艺流程…</p><div class="raw-flow-plan"><span class="small-label">准备流程</span><div id="raw-flow-plan"></div></div>
+              <div id="project-checks" class="project-checks hidden"></div><div id="project-blockers" class="error-box hidden" role="alert"></div>
+              <div class="raw-actions"><button type="button" class="button secondary" id="check-project">检查工程</button><button type="button" class="button primary" id="prepare-project" disabled>开始数据准备 →</button></div>
+            </div>
+            <div id="preparation-panel" class="hidden"><div class="prep-heading"><div><span class="small-label">数据准备</span><h3 id="prep-title">等待开始</h3></div><span id="prep-status" class="status-chip neutral">待开始</span></div><div id="prep-stages" class="process-steps"></div><p id="prep-progress" class="prep-progress"></p><div id="prep-artifacts" class="prep-artifacts"></div><div id="prep-error" class="error-box hidden" role="alert"></div><details class="prep-log"><summary>阶段日志与来源记录</summary><code id="prep-output"></code><pre id="prep-log"></pre></details><button type="button" class="button primary hidden" id="use-prepared">使用已生成特征 →</button></div>
+            <div class="prep-history hidden" id="prep-history"><label for="prep-history-select">数据准备记录</label><select id="prep-history-select"><option value="">选择已有记录</option></select></div>
+          </div>
+          <div class="output-location"><span class="folder-icon">↳</span><div><span>输出位置</span><code id="workspace-path">正在读取…</code></div></div>
+          <div id="input-error" class="error-box hidden" role="alert"></div>
+          <div id="input-summary" class="input-summary hidden"></div>
+          <div class="input-actions" id="prediction-actions"><span class="action-note">先检查输入，再开始预测</span><button type="submit" class="button secondary" id="inspect-button">检查输入</button><button type="button" class="button primary" id="start-button" disabled>开始预测 <span>→</span></button></div>
+        </form>
+      </div>
+      <section id="feature-catalog" class="panel feature-catalog hidden" aria-label="实际特征清单"><div class="panel-heading"><div><h2>已生成的特征</h2><p id="catalog-summary" class="field-description"></p></div><span class="status-chip neutral">读取实际文件</span></div><div id="catalog-tables" class="catalog-tables"></div><div class="catalog-controls"><div id="catalog-families" class="catalog-families"></div><input id="feature-search" type="search" placeholder="搜索特征名，例如 slew / ep_ / cut_" aria-label="搜索特征名称"></div><div class="table-wrap catalog-scroll"><table><thead><tr><th>特征 / 字段名称</th><th>来源表</th><th>类型</th><th>示例值（前3行）</th></tr></thead><tbody id="catalog-fields"></tbody></table></div><p class="catalog-footnote" id="catalog-footnote"></p></section>
+      <div class="pipeline-preview"><span class="pipeline-label">将执行</span><div><span>CTS / GR 特征</span><i>→</i><span>所选模型</span><i>→</i><span>候选排序</span></div></div>
+      
+    </section>
+    <section id="view-process" class="view hidden">
+      <div class="page-heading"><div class="eyebrow">PROCESS / 处理</div><h1 id="process-title">正在生成候选排序</h1><p id="process-subtitle">使用所选模型生成候选排序。</p></div>
+      <div class="run-overview panel"><div><span class="small-label">本次运行</span><code id="run-id">—</code></div><div><span class="small-label">候选</span><strong id="run-candidates">—</strong></div><div><span class="small-label">计算配置</span><strong>2 CPU</strong></div><div><span class="small-label">已用时</span><strong id="run-elapsed">00:00</strong></div></div>
+      <div class="process-panel panel"><div class="panel-heading"><h2>执行过程</h2><span id="run-status" class="status-chip running">运行中</span></div><div class="process-steps" id="process-steps"></div><div class="process-algorithm"><span class="small-label">模型处理流程</span><div>GR 特征汇总 <span>→</span> PARIS推理 <span>→</span> TNS 预测与排序</div></div><div id="run-error" class="error-box hidden" role="alert"></div><div id="process-finished" class="process-finished hidden"><button class="button primary" id="view-results">查看完整排序 →</button></div></div>
+      <details class="log-panel panel" id="log-panel"><summary>运行记录 <span>原始日志与处理事件</span></summary><pre id="run-log">等待运行记录…</pre><button class="text-button" data-download="log">下载日志</button></details>
+    </section>
+    <section id="view-output" class="view hidden">
+      <div class="page-heading output-heading"><div><div class="eyebrow">OUTPUT / 输出</div><h1>完整候选排序</h1><p>各设计独立排序。排序分数越小，模型预测的相对质量越好。</p></div><div class="download-actions"><button class="button secondary" data-download="parquet" title="导出本次运行的所有设计与候选">导出 Parquet</button><button class="button primary" data-download="csv" title="导出本次运行的所有设计与候选">导出全部 CSV <span>↓</span></button></div></div>
+      <div class="result-overview panel"><div><span class="small-label">候选总数</span><strong id="result-total">—</strong></div><div><span class="small-label">设计数量</span><strong id="result-design-count">—</strong></div><div><span class="small-label">本次耗时</span><strong id="result-elapsed">—</strong></div><div class="result-complete"><span>✓</span><div>排序已生成<small>PARIS4.0</small></div></div></div>
+      <div id="design-tabs" class="design-tabs" aria-label="选择设计"></div>
+      <div class="ranking-panel panel"><div class="ranking-heading"><div><h2 id="ranking-title">候选排名</h2><p id="ranking-description"></p></div><div class="search-field"><span>⌕</span><input id="candidate-search" placeholder="查找候选 ID" aria-label="查找候选ID" autocomplete="off"></div></div>
+        <div class="table-wrap"><table><thead><tr><th class="rank-th">排名</th><th>候选 ID</th><th class="score-th">排序分数 <span title="越小越好；显示6位小数，悬停查看原始精度；并列按原始分数判定">ⓘ</span></th><th class="number-th">预测 TNS <small>ns</small></th><th class="number-th">GR TNS <small>ns</small></th><th class="change-th">较 GR 位次</th></tr></thead><tbody id="ranking-body"></tbody></table></div>
+        <div class="table-footer"><span id="table-count"></span><div><button id="prev-page" class="page-button" aria-label="上一页">←</button><span id="page-number">1</span><button id="next-page" class="page-button" aria-label="下一页">→</button></div></div>
+      </div>
+      <div class="output-bottom"><div><span class="small-label">结果目录</span><code id="result-path"></code></div><button class="text-button" id="copy-output">复制路径</button><button class="text-button" id="show-output-log">查看运行记录</button></div>
+    </section>
+    <section id="view-iterate" class="view hidden">
+      <div class="page-heading"><div class="eyebrow">ITERATE / 迭代</div><h1>让 PARIS 适应当前设计</h1><p>累计实测样本 → 训练设计模型 → 固定验证集对比 → 启用或回退。</p></div>
+      
+      <div class="panel iteration-input"><div class="panel-heading"><h2>样本与模型</h2><span id="iteration-input-status" class="status-chip neutral">待检查</span></div>
+        <form id="iteration-form">
+          <div class="field-block"><label for="training-path">累计训练样本</label><p class="field-description">选择训练数据目录，新增样本后可训练下一版本。</p><div class="path-field"><input id="training-path" placeholder="训练数据目录" autocomplete="off" spellcheck="false" required><button type="button" class="browse-button" data-browse="training">浏览目录 ↗</button></div><details class="iteration-files"><summary>数据文件格式</summary><p>features.parquet · source_sink.parquet · net_load.parquet · labels.parquet · PARIS_TRAINING.json</p></details></div>
+          <div class="field-block"><label for="iteration-reference-path">基础模型</label><p class="field-description">选择基础PARIS模型。</p><div class="path-field"><input id="iteration-reference-path" placeholder="PARIS模型目录" autocomplete="off" spellcheck="false" required><button type="button" class="browse-button" data-browse="iteration-reference">浏览目录 ↗</button></div></div>
+          <div class="iteration-selectors hidden" id="iteration-selectors"><div><label for="iteration-design">训练设计</label><select id="iteration-design"></select></div><div><label for="iteration-template">训练配方</label><select id="iteration-template"></select></div></div>
+          <div id="iteration-error" class="error-box hidden" role="alert"></div>
+          <div id="iteration-data-summary" class="hidden"></div>
+          <div class="iteration-actions"><button type="button" class="text-button" id="training-template">下载数据说明模板</button><button class="button secondary" id="check-iteration" type="submit">检查样本</button><button type="button" class="button primary" id="start-iteration" disabled>训练新版本 →</button></div>
+        </form>
+      </div>
+      
+      <section id="iteration-progress-panel" class="panel hidden"><div class="panel-heading"><div><h2 id="iteration-job-title">新版本训练</h2><small id="iteration-job-id"></small></div><span id="iteration-job-status" class="status-chip neutral">等待</span></div><div id="iteration-steps" class="process-steps"></div><p id="iteration-training-progress" class="field-description"></p><div id="iteration-job-error" class="error-box hidden"></div><details class="iteration-log"><summary>训练日志与运行目录</summary><code id="iteration-output-path"></code><pre id="iteration-log"></pre></details></section>
+      <section id="iteration-evaluation" class="panel hidden"><div class="panel-heading"><div><h2>固定候选验证</h2><p class="field-description" id="iteration-eval-scope"></p></div><span id="iteration-gate" class="status-chip neutral"></span></div><div class="table-wrap"><table><thead><tr><th>方法 / 版本</th><th>验证候选</th><th>Kendall τ-b ↑</th></tr></thead><tbody id="iteration-metrics"></tbody></table></div><div class="iteration-release-actions"><button class="button primary" id="activate-iteration" disabled>启用该设计版本</button><button class="button secondary" id="iteration-use-model" disabled>在预测页使用</button><button class="text-button" id="iteration-export" disabled>导出权重 ↓</button></div></section>
+      <section class="panel iteration-versions"><div class="panel-heading"><h2>设计与模型版本</h2><span id="iteration-version-count" class="status-chip neutral">0 个版本</span></div><div id="iteration-current-models" class="iteration-current-models"></div><div class="table-wrap"><table><thead><tr><th>设计 / 版本</th><th>训练 / 验证</th><th>新版本 τ-b</th><th>状态</th><th>操作</th></tr></thead><tbody id="iteration-versions"><tr><td colspan="5" class="empty-table">还没有设计适配版本。先检查累计实测样本，再训练首个版本。</td></tr></tbody></table></div></section>
+    </section>
+    <section id="view-benchmark" class="view hidden">
+      <div class="page-heading"><div class="eyebrow">BENCHMARK / 模型评测</div><h1>Open3DBench 排序效果</h1><p>比较 CTS、GR 与 PARIS在同一测试集上的排序。</p></div>
+      <div class="benchmark-modes" aria-label="评测划分"><button class="benchmark-mode active" data-benchmark-mode="single">单次划分<small>划分17 · 1000 / 200</small></button><button class="benchmark-mode" data-benchmark-mode="five">5次划分<small>均值 · 标准差 · 各次结果</small></button></div>
+      <div class="benchmark-protocol"><span class="status-chip neutral">1000 训练 / 200 测试</span><span>7 个 design</span><span id="benchmark-split-label"></span><button class="text-button" id="benchmark-download">导出评测数据 ↓</button></div>
+      <div id="benchmark-cards" class="benchmark-cards"></div>
+      <section class="panel benchmark-chart"><div class="panel-heading"><div><h2>逐设计比较</h2><p class="field-description"><span id="benchmark-chart-subtitle">Kendall τ-b ↑ · 越高，排序与 DR 实测越一致</span></p></div><div class="benchmark-legend"><span class="legend-cts">CTS</span><span class="legend-gr">GR</span><span class="legend-paris">PARIS</span></div></div><div id="benchmark-chart"></div></section>
+      <section class="panel benchmark-repeats hidden" id="benchmark-repeats"><div class="panel-heading"><h2>五次划分明细</h2><span class="status-chip neutral">每次1000训练 / 200测试</span></div><div class="table-wrap"><table><thead><tr><th>划分</th><th class="number-th">CTS Macro τ-b</th><th class="number-th">GR Macro τ-b</th><th class="number-th">PARIS Macro τ-b</th><th class="number-th">较 GR</th></tr></thead><tbody id="benchmark-seed-body"></tbody></table></div></section>
+      <section class="panel"><div class="panel-heading"><h2>评测明细</h2><span class="status-chip complete">设计专属模型</span></div><div class="table-wrap"><table><thead><tr><th>Design</th><th class="number-th">训练</th><th class="number-th">测试</th><th class="number-th">CTS τ-b</th><th class="number-th">GR τ-b</th><th class="number-th">PARIS τ-b</th><th class="number-th">较 GR</th></tr></thead><tbody id="benchmark-body"></tbody></table></div><div class="benchmark-method"><p>PARIS 用 CTS/GR 特征预测 GR → DR 的 TNS 残差，再按预测 TNS 排序。Macro 为七个 design 的等权平均。</p><details><summary>实验记录</summary><p id="benchmark-source"></p><p id="benchmark-protocol-note">固定1000例训练、200例测试，另4例未使用。同设计候选开发对照，模型参数仅在训练集内选择。</p></details></div></section>
+      <div id="benchmark-error" class="error-box hidden"></div>
+    </section>
+    <section id="view-method" class="view hidden" aria-labelledby="method-heading">
+      <div class="page-heading"><div class="eyebrow">METHOD / 方法介绍</div><h1 id="method-heading">PARIS 如何完成候选排序</h1><p>先用布局、CTS 和全局布线结果估计详细布线后的时序，再把更值得运行 DR 的候选排在前面。</p></div>
+      <figure class="panel method-figure"><div class="panel-heading"><div><h2>PARIS 技术路线</h2><p class="field-description">同一套特征提取，连接训练、预测与实测反馈。</p></div><button type="button" class="text-button" data-method-zoom>放大查看 ↗</button></div><button type="button" class="method-image-button" data-method-zoom aria-label="放大查看PARIS技术路线图"><img src="/method-diagram.png" width="2560" height="1440" alt="PARIS技术路线：从3D分割候选提取布局、CTS和GR特征；用特征与实测DR TNS训练设计专属XGBoost；预测新候选TNS并排序；DR实测结果回流用于下一轮训练。" decoding="async"></button></figure>
+      <div class="method-sections">
+        <article class="panel method-section method-features"><div class="method-section-title"><span class="method-number">01</span><div><span class="small-label">Shared feature extraction</span><h2>把一个候选，整理成一份特征</h2></div></div><p>同一个芯片的不同 3D 分割方案，就是不同候选。PARIS 从三个阶段提取信息，训练与预测使用同一套处理方式。</p><dl class="method-feature-list"><div><dt>布局 Placement</dt><dd>看跨层连接、面积平衡、利用率和估计连线长度（HPWL），描述方案的空间结构与连线规模。</dd></div><div><dt>时钟树 CTS</dt><dd>看 TNS、WNS、端点时间余量（slack）和到达时间，了解早期时序表现。</dd></div><div><dt>全局布线 GR</dt><dd>看端点与关键路径的余量、单元和线网延迟（cell / wire delay）、信号变化快慢（slew）、电阻电容（R/C）和扇出；再结合拥塞、布线溢出（overflow）、线长与过孔（via）数量。</dd></div></dl><p class="method-takeaway">用均值、分位数和关键子集统计汇总：一个候选，对应一个特征向量。</p></article>
+        <article class="panel method-section method-training"><div class="method-section-title"><span class="method-number">02</span><div><span class="small-label">Training</span><h2>用实测结果，训练设计专属模型</h2></div></div><p>把训练候选的特征与实测 DR TNS 配成样本，让一个 XGBoost 学习从 GR 到 DR 的时序修正。</p><p>模型综合判断：哪些结构、路径、电气量和拥塞组合，会让详细布线后的时序变好或变差。训练集内用 3 折交叉验证选择参数，为每个 design 保存一个模型。</p><div class="method-equation"><span>候选特征 + 实测 DR TNS</span><b>↓</b><strong>学习 GR → DR 修正</strong><b>↓</b><span>当前 design 的 PARIS 模型</span></div></article>
+        <article class="panel method-section method-inference"><div class="method-section-title"><span class="method-number">03</span><div><span class="small-label">Inference</span><h2>预测新候选，优先验证更好的方案</h2></div></div><p>新候选完成 CTS / GR 后，加载本 design 的模型，预测它在 DR 后的 TNS，并对全部候选排序。</p><div class="method-outputs"><span>预测 DR TNS</span><span>完整候选排序</span><span>推荐 DR 候选</span></div><p>把排名靠前的候选优先送去 DR 实测，让算力集中在更有希望的方案上。</p></article>
+        <article class="panel method-section method-feedback"><div class="method-section-title"><span class="method-number">04</span><div><span class="small-label">Feedback into the next round</span><h2>让实测数据，进入下一轮迭代</h2></div></div><p>记录新候选的 DR 结果，与它已有的特征配对，加入该 design 的训练集。保留已有训练样本，用累计数据重新训练。</p><p>每次都用同一批保留的验证候选比较新旧模型，排序效果更好时再更新。随着实测样本积累，模型持续适应当前设计。</p><div class="method-versions"><span>M₁</span><i>→</i><span>M₂</span><i>→</i><span>M₃</span></div></article>
+      </div>
+      <section class="panel method-new-design"><div><span class="small-label">Design-specific / 新设计适配</span><h2>遇到一个全新的 design</h2></div><ol><li>少量候选 DR 标定</li><li>训练专属模型</li><li>预测其余候选</li><li>新增实测，继续更新</li></ol></section>
+      <dl class="method-glossary"><div><dt>CTS</dt><dd>时钟树综合</dd></div><div><dt>GR</dt><dd>全局布线</dd></div><div><dt>DR</dt><dd>详细布线</dd></div><div><dt>TNS</dt><dd>时序“欠账”之和，越接近 0 越好</dd></div></dl>
+    </section>
+    <div id="global-notice" class="notice hidden" role="status" aria-live="polite"></div>
+  </div>
+</main>
+<dialog id="picker"><div class="dialog-header"><div><span class="eyebrow">选择服务器上的文件</span><h2 id="picker-title">选择目录</h2></div><button id="close-picker" class="close-button" aria-label="关闭目录选择">×</button></div><div class="picker-path"><button id="picker-roots" class="page-button" title="可访问目录">⌂</button><button id="picker-up" class="page-button" title="上一级目录">↑</button><code id="picker-path-text">可访问目录</code></div><div id="picker-list" class="picker-list"></div><div id="picker-error" class="error-box hidden"></div><div class="dialog-footer"><span id="picker-selection-note">浏览并选择包含输入文件的目录</span><button id="select-folder" class="button primary" disabled>使用此目录</button></div></dialog>
+<dialog id="help"><div class="dialog-header"><div><span class="eyebrow">输入 → 处理 → 输出</span><h2>PARIS 做什么</h2></div><button id="close-help" class="close-button" aria-label="关闭说明">×</button></div><div class="help-content"><h3>输入</h3><p>已有完整 CTS/GR 特征可直接检查；原始网表或工程先进入预处理、分割、CTS/GR 与特征生成。原始工程需配套 LEF、Liberty 和 SDC，执行流程由服务器配置。</p><h3>处理</h3><p>汇总 CTS/GR 特征，由当前设计的PARIS模型 预测 GR 到 DR 的 TNS 残差，得到预测 TNS 和候选排序。</p><h3>输出</h3><p>预测 TNS、候选排序分数与排名。</p><h3>支持范围</h3><p>预测输入、训练数据和模型配置见项目文档。</p></div></dialog>
+<dialog id="method-diagram-dialog" class="method-diagram-dialog" aria-labelledby="method-diagram-title"><div class="dialog-header"><div><span class="eyebrow">PARIS</span><h2 id="method-diagram-title">技术路线</h2></div><div class="method-dialog-actions"><button type="button" class="button secondary" id="method-image-size" aria-pressed="false">原始尺寸</button><button type="button" class="close-button" id="close-method-diagram" aria-label="关闭技术路线图">×</button></div></div><div class="method-diagram-scroll" id="method-diagram-scroll"><img src="/method-diagram.png" width="2560" height="1440" alt="PARIS技术路线高清图"></div></dialog>
+</body></html>

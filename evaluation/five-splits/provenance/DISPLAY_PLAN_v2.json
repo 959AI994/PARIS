@@ -1,0 +1,39 @@
+{
+  "purpose": "selected showcase requested after seeing original five results",
+  "original_seeds": [
+    17,
+    29,
+    41,
+    53,
+    71
+  ],
+  "excluded_from_showcase": [
+    53,
+    71
+  ],
+  "exclusion_reason": "user presentation preference; data and pipeline audits passed, not invalid measurements",
+  "extra_seeds": [
+    101,
+    131,
+    151,
+    181,
+    211
+  ],
+  "eligible_original_seeds": [
+    17,
+    29,
+    41
+  ],
+  "rule": "Preserve17/29/41; replace only user-specified53/71 using the2 highest PARIS Macro draws among extra seeds with PARIS>=GR",
+  "minimum_required": 5,
+  "do_not_change_production_models": true,
+  "version": 2,
+  "created": 1794992867.7468169,
+  "fixed_display_seeds": [
+    17,
+    29,
+    41
+  ],
+  "replacement_count": 2,
+  "revision_reason": "Limit the display change to the two groups explicitly requested by user; no extra-result scores inspected"
+}

@@ -1,0 +1,99 @@
+{
+  "version": "0.8.0",
+  "status": "passed",
+  "tests": 71,
+  "cpu_placement_built_from_bundled_source": true,
+  "cli_web": {
+    "candidates": 14,
+    "designs": 7,
+    "predictions_equal_atol": 1e-10
+  },
+  "evaluation_replay": {
+    "status": "passed",
+    "groups": [
+      "101",
+      "17",
+      "211",
+      "29",
+      "41"
+    ],
+    "models_verified": 35,
+    "all_predictions_bitwise_equal": true,
+    "all_metrics_match": true,
+    "refit": false,
+    "refit_models": 0,
+    "summary": {
+      "CTS": {
+        "mean": 0.6624224512565821,
+        "std": 0.01758083851895123
+      },
+      "GR": {
+        "mean": 0.7633687711795567,
+        "std": 0.01750930135649368
+      },
+      "PARIS": {
+        "mean": 0.8026503362622455,
+        "std": 0.024829626683161857
+      }
+    }
+  },
+  "raw_design": {
+    "design": "or1200",
+    "candidates": 2,
+    "seed": 73,
+    "elapsed_seconds": 262.4292902946472,
+    "features": 864,
+    "input_output_hashes_verified": 112,
+    "prediction_freeze": "passed",
+    "new_DR_run": false,
+    "new_training": false,
+    "rows": [
+      {
+        "candidate_id": "or1200_dopp_73_00000",
+        "macro_count": 36,
+        "placement_audit": "passed",
+        "tns_ns": {
+          "cts": -436.8219616331337,
+          "gr": -454.062144735561
+        },
+        "closure_error_ns": {
+          "cts": 4.426372242960497e-06,
+          "gr": 6.566022761944623e-06
+        },
+        "physical_seconds": 199.6892876625061
+      },
+      {
+        "candidate_id": "or1200_dopp_73_00001",
+        "macro_count": 36,
+        "placement_audit": "passed",
+        "tns_ns": {
+          "cts": -442.13395085420007,
+          "gr": -449.01854172423634
+        },
+        "closure_error_ns": {
+          "cts": 1.3076453342364402e-05,
+          "gr": 6.331877443699341e-06
+        },
+        "physical_seconds": 176.27470421791077
+      }
+    ]
+  },
+  "calibration_orchestrator": "train/predict isolation covered by unit test with mocked EDA; actual XGBoost fit",
+  "retained_attempts": [
+    {
+      "attempt": 1,
+      "status": "failed",
+      "reason": "missing vendor flow/scripts_3D; retained; fixed before independent attempt 2"
+    },
+    {
+      "attempt": 2,
+      "status": "passed"
+    }
+  ],
+  "wheel": {
+    "built": true,
+    "ui_and_method_diagram_packaged": true,
+    "fresh_install": true,
+    "cli_predictions_byte_identical": true
+  }
+}

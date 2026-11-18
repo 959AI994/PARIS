@@ -1,0 +1,30 @@
+# PARIS project schema v1. Paths are relative to this file.
+version: 1
+workspace: ./paris-work
+candidates: ./candidates.csv
+threads: 2
+timeout: 7200
+openroad:
+  binary: /opt/openroad/bin/openroad
+  # Optional stage-specific binaries; default to binary.
+  # gr_binary: /opt/openroad-gr/bin/openroad
+  # dr_binary: /opt/openroad-dr/bin/openroad
+  liberty:
+    - ./platform/design.lib
+    # Add the exact macro Liberty files used by this design.
+  setrc: ./platform/setRC.tcl
+  rcx_rules: ./platform/rcx.rules
+  corner: nominal
+  time_unit: ns
+selection:
+  max_nets: 1000
+  include_clocks: true
+path_endpoint_limit: 1024
+# Optional: an existing native PARIS4 model or imported frozen bundle.
+# model: ./models/my-paris4
+# Optional user-owned detailed-route flow. Commands run without a shell.
+# It must write ${PARIS_DR_RESULT} JSON containing dr_odb and dr_sdc.
+# The output paths may be absolute or relative to PARIS_JOB_DIR.
+# flow:
+#   dr_command: ["python3", "/absolute/path/to/run_my_dr_flow.py"]
+

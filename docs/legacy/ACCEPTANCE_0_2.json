@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "algorithm": "paris4.original.seed17.1",
+  "n_designs": 7,
+  "n_candidates": 485,
+  "score_bitwise_equal": true,
+  "all_pair_relations_equal": true,
+  "candidate_branch_ranks_equal": true,
+  "endpoint_branch_ranks_equal": true,
+  "prediction_seconds": 263.79458251595497,
+  "paris_package": "0.2.0",
+  "new_detailed_routes": 0,
+  "target_labels_read_after_prediction_freeze": true,
+  "prediction_sha256": "633516f07ef4de7470a3dadc479e162ec418a1166dec07ea89466a7f7575ea8c",
+  "model_archive_sha256": "7af1a37c64a50ad8f7b1be6124705610e1b88ade5b8d557708672bae6e731f2c",
+  "macro": {
+    "GR_tau_b": 0.7539306310396949,
+    "original_PARIS4_tau_b": 0.7996579129442029,
+    "integrated_PARIS4_tau_b": 0.7996579129442029
+  },
+  "limitations": [
+    "Explored seed-17 target pool, not independent new-design validation.",
+    "Exact original model feature profile required; native collector is not silently substituted."
+  ],
+  "release": "paris-eda 0.2.0",
+  "date": "2026-11-17",
+  "installed_unit_tests_passed": 21,
+  "software_runtime": "Linux x86_64 / Python 3.10.16",
+  "historical_reference": "Original sealed PARIS4_GUARDED_PREDICTIONS.parquet, seed 17",
+  "label_version": "paris_1204_unified_20261012_v2_flowlibs",
+  "weights_in_public_source": false,
+  "original_score_cache_in_model": false,
+  "previous_native_checkpoint_acceptance": "ACCEPTANCE_0_1.json",
+  "final_installed_checks": {
+    "status": "passed",
+    "positive_real_candidates": 26,
+    "original_scores_bitwise_identical": true,
+    "target_DR_field_rejected": true,
+    "unknown_design_rejected": true,
+    "GR_input_change_changes_output": true,
+    "no_reference_score_lookup": true,
+    "final_inference_modules_identical_to_seven_design_run": {
+      "paris_tool/models.py": true,
+      "paris_tool/original_runtime.py": true,
+      "paris_tool/utils.py": true
+    },
+    "final_wheel_sha256": "e5799b8c9c39db3955192ce18757e1d05ba500f4ea6c6a2472f1cf0b8bfb18bd"
+  }
+}

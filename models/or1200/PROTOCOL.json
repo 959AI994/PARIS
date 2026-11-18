@@ -1,0 +1,110 @@
+{
+  "algorithm": "paris.single-candidate-xgb.same-design.3",
+  "design": "or1200",
+  "training_ids": [
+    "or1200_dopp_41_00000",
+    "or1200_dopp_41_00001",
+    "or1200_dopp_41_00002",
+    "or1200_dopp_41_00003",
+    "or1200_dopp_41_00004",
+    "or1200_dopp_41_00005",
+    "or1200_dopp_41_00006",
+    "or1200_dopp_41_00007",
+    "or1200_dopp_41_00008",
+    "or1200_dopp_41_00009",
+    "or1200_dopp_41_00010",
+    "or1200_dopp_41_00011",
+    "or1200_dopp_41_00012",
+    "or1200_dopp_41_00013",
+    "or1200_dopp_41_00014",
+    "or1200_dopp_41_00015",
+    "or1200_dopp_41_00016",
+    "or1200_dopp_41_00017",
+    "or1200_dopp_41_00018",
+    "or1200_dopp_41_00019",
+    "or1200_dopp_41_00020",
+    "or1200_dopp_41_00021",
+    "or1200_dopp_41_00022",
+    "or1200_dopp_41_00023"
+  ],
+  "test_ids": [
+    "or1200_dopp_17_00000",
+    "or1200_dopp_17_00001",
+    "or1200_dopp_17_00002",
+    "or1200_dopp_17_00003",
+    "or1200_dopp_17_00004",
+    "or1200_dopp_17_00005",
+    "or1200_dopp_17_00006",
+    "or1200_dopp_17_00007",
+    "or1200_dopp_17_00008",
+    "or1200_dopp_17_00009",
+    "or1200_dopp_17_00010",
+    "or1200_dopp_17_00011"
+  ],
+  "training_candidates": 24,
+  "test_candidates": 12,
+  "learned_estimators_in_final_model": 1,
+  "feature_count": 997,
+  "feature_policy": "Previous single-XGB 1002-column schema minus five engineering provenance fields; original 141-column GR summary implementation unchanged",
+  "removed_metadata": [
+    "cts_odb_size_bytes",
+    "cts_odb_mtime_ns",
+    "grt_odb_size_bytes",
+    "grt_odb_mtime_ns",
+    "feature_schema_version"
+  ],
+  "target": "Training-fold standardized residual of log1p(-DR_TNS) - log1p(-GR_TNS)",
+  "target_preprocessing": "Mean and population std fitted only on each training fold; final transform fitted on all24 training candidates; no test statistics",
+  "revision_reason": "v1 had400 trees and zero split nodes on training-side audit; correct objective scale before repeating the fixed protocol; retain v1 negative result",
+  "final_tns_transform": "-expm1(clip(log1p(-GR_TNS) + XGB(x), 0, 50))",
+  "params": {
+    "n_estimators": 400,
+    "learning_rate": 0.03,
+    "min_child_weight": 3,
+    "reg_alpha": 0.1,
+    "subsample": 1.0,
+    "colsample_bytree": 0.8,
+    "tree_method": "hist",
+    "max_bin": 128,
+    "n_jobs": 2,
+    "random_state": 17,
+    "objective": "reg:squarederror"
+  },
+  "grid": [
+    {
+      "max_depth": 2,
+      "reg_lambda": 10.0
+    },
+    {
+      "max_depth": 2,
+      "reg_lambda": 100.0
+    },
+    {
+      "max_depth": 3,
+      "reg_lambda": 10.0
+    },
+    {
+      "max_depth": 3,
+      "reg_lambda": 100.0
+    }
+  ],
+  "selection": "3-fold shuffled seed17 candidate-only CV; maximize mean tau-b, then minimize mean log-cost MAE, then lower fixed grid index",
+  "scope": "previously explored seed17 development evaluation pool; no test labels used for training, configuration selection or feature selection",
+  "new_DR": 0,
+  "new_STA": 0,
+  "gpu": false,
+  "cpu_threads": 2,
+  "input_stage": "GR/CTS only",
+  "training_supervision": "24 same-design measured DR RCX STA candidate TNS labels; no wire DR labels consumed",
+  "label_scope": "Source budget one detailed-route iteration; remaining DRC; not signoff",
+  "reference_code_sha256": "4a968208c033dd5f9b3c7ca7a1bd934a3e227c5516dffa112eb16ff8159816bf",
+  "reference_schema_sha256": "74c776f69a4d8807b8bd59c0a907931773fdc76c925584d9a7a0950537caefda",
+  "training_label_receipt_sha256": "626a6e9c39d959c09d831f7542a9ddb8984c0969746fb7de49a24ff91c5390f1",
+  "versions": {
+    "python": "3.10.16 (main, Dec 11 2024, 16:24:50) [GCC 11.2.0]",
+    "numpy": "1.26.4",
+    "pandas": "2.3.3",
+    "xgboost": "3.2.0",
+    "sklearn": "1.6.1"
+  }
+}

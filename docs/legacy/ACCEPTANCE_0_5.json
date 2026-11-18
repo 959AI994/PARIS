@@ -1,0 +1,61 @@
+{
+  "version": "0.5.0",
+  "date": "2026-11-17",
+  "tests": {
+    "passed": 51,
+    "seconds": 24.92
+  },
+  "original_prediction_core": "four original modules byte-identical to 0.3.0; original weights unchanged",
+  "new_algorithm": "paris4.original.design-refit.1",
+  "native_substitution": false,
+  "capability": [
+    "cumulative per-design refit",
+    "fixed candidate-disjoint development holdout",
+    "input and model signatures",
+    "GR/current/candidate validation",
+    "manual reversible activation",
+    "per-design weight export",
+    "physical context matching"
+  ],
+  "browser": {
+    "console_errors": 0,
+    "horizontal_overflow": false,
+    "checks": [
+      "iteration navigation",
+      "real sample inspection",
+      "two real training jobs",
+      "same validation protocol displayed",
+      "engineering deployments disabled",
+      "version history retained"
+    ]
+  },
+  "engineering_regression": {
+    "real_historical_candidates": [
+      38,
+      42
+    ],
+    "training_candidates": [
+      26,
+      30
+    ],
+    "fixed_validation": 12,
+    "same_validation_ids": true,
+    "sampled_wire_arcs_per_candidate": 8,
+    "wire_trees": 900,
+    "endpoint_features": 104,
+    "old_model_preserved": true,
+    "cli_parity_candidates": 12,
+    "bit_exact_cli_ranking": true,
+    "private_export_import_roundtrip": "passed; engineering only",
+    "new_design_accuracy_claim": false,
+    "independent_accuracy_claim": false,
+    "versions_activated": 0
+  },
+  "limitations": [
+    "new-design physical generalization remains unvalidated",
+    "development validation is repeatedly visible, not independent test",
+    "reference fusion/correction decisions fixed; fitted weights refitted",
+    "cumulative dataset directories required; no automatic batch merge",
+    "raw physical preparation still requires a verified PDK-specific recipe"
+  ]
+}

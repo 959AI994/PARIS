@@ -1,0 +1,44 @@
+[
+  {
+    "design": "ariane133",
+    "configuration": 1,
+    "tau_b": 0.856628660854013,
+    "log_mae": 0.023670242387112937
+  },
+  {
+    "design": "ariane136",
+    "configuration": 3,
+    "tau_b": 0.6699186991869919,
+    "log_mae": 0.07738076166438718
+  },
+  {
+    "design": "bp",
+    "configuration": 0,
+    "tau_b": 0.7702408672748787,
+    "log_mae": 0.06728521170839316
+  },
+  {
+    "design": "bp_be",
+    "configuration": 3,
+    "tau_b": 0.6952380952380953,
+    "log_mae": 0.16015901744215377
+  },
+  {
+    "design": "bp_fe",
+    "configuration": 0,
+    "tau_b": 0.653050108932462,
+    "log_mae": 0.11841025107849439
+  },
+  {
+    "design": "bp_multi",
+    "configuration": 2,
+    "tau_b": 0.7652582159624415,
+    "log_mae": 0.049796844126927954
+  },
+  {
+    "design": "swerv_wrapper",
+    "configuration": 0,
+    "tau_b": 0.8855486229280897,
+    "log_mae": 0.03460434439080071
+  }
+]

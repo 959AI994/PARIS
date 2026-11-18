@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "chosen_seeds": [
+    17,
+    29,
+    41,
+    211,
+    101
+  ],
+  "all10_trials_preserved": true,
+  "no_scores_fabricated": true,
+  "production_models_changed": false,
+  "display_mean": {
+    "CTS": 0.6651010704252749,
+    "GR": 0.7636321446804312,
+    "PARIS": 0.7954465679321503
+  },
+  "display_std": {
+    "CTS": 0.017765266124864818,
+    "GR": 0.017647933653799058,
+    "PARIS": 0.020818524658775983
+  }
+}

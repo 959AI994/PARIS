@@ -1,0 +1,13 @@
+# Install PARIS first, then this CPU placement environment.
+torch==2.11.0
+torch-geometric==2.8.0
+numpy==1.26.4
+scipy==1.15.3
+networkx==3.4.2
+shapely==2.1.2
+matplotlib==3.10.3
+Pillow==11.2.1
+cairocffi==1.7.1
+pyunpack>=0.1.2
+patool>=1.12
+pkgconfig>=1.4

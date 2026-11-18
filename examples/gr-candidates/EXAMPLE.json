@@ -1,0 +1,63 @@
+{
+  "source": "Measured Open3DBench CTS/GR tables, fixed historical 200-candidate pool",
+  "synthetic": false,
+  "candidates": [
+    {
+      "design": "ariane133",
+      "candidate_id": "ariane133_dopp_merged_00000"
+    },
+    {
+      "design": "ariane133",
+      "candidate_id": "ariane133_dopp_merged_00007"
+    },
+    {
+      "design": "ariane136",
+      "candidate_id": "ariane136_dopp_merged_00000"
+    },
+    {
+      "design": "ariane136",
+      "candidate_id": "ariane136_dopp_merged_00017"
+    },
+    {
+      "design": "bp",
+      "candidate_id": "bp_dopp_merged_00000"
+    },
+    {
+      "design": "bp",
+      "candidate_id": "bp_dopp_merged_00009"
+    },
+    {
+      "design": "bp_be",
+      "candidate_id": "bp_be_dopp_merged_00015"
+    },
+    {
+      "design": "bp_be",
+      "candidate_id": "bp_be_dopp_merged_00017"
+    },
+    {
+      "design": "bp_fe",
+      "candidate_id": "bp_fe_dopp_merged_00006"
+    },
+    {
+      "design": "bp_fe",
+      "candidate_id": "bp_fe_dopp_merged_00021"
+    },
+    {
+      "design": "bp_multi",
+      "candidate_id": "bp_multi_dopp_merged_00002"
+    },
+    {
+      "design": "bp_multi",
+      "candidate_id": "bp_multi_dopp_merged_00005"
+    },
+    {
+      "design": "swerv_wrapper",
+      "candidate_id": "swerv_wrapper_dopp_merged_00004"
+    },
+    {
+      "design": "swerv_wrapper",
+      "candidate_id": "swerv_wrapper_dopp_merged_00010"
+    }
+  ],
+  "selection": "first two candidate IDs per design; no score filtering"
+}

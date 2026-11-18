@@ -1,0 +1,230 @@
+{
+  "archive_version": 1,
+  "groups": [
+    {
+      "display_id": 17,
+      "actual_seed": 20261117,
+      "directory": "splits/17",
+      "source_run": "/data/wjx/PARIS/runs/timing_predict_20261007/paris_compare_train1000_test200_20261117_v1",
+      "model_sha256": {
+        "ariane133": "13a9057c4230a7c5373ff01c8a30ac944d82752c65dd9dd7aa23f18a380d85ea",
+        "ariane136": "f23df8b39e17aea1dabe7624f92f1bd96bdcfa1e9c4a45464be1122ce62838c0",
+        "bp": "5ab66808e036b8572730f1b14ac836eabb6944b53e97542a0f6d43ad64e7e1b8",
+        "bp_be": "862c5725f8c83cda94a856ea5a4f9f737fe2ef96319b6e904eee394f313c375a",
+        "bp_fe": "59c87134b3172466cd8d5ea0dddd0f5e495cd6faf9f5bc0d12ca8e45796f5c6f",
+        "bp_multi": "c75476e98ca946454b6ee484c40ed234ce6cd43b7391a34eeada0705c940b992",
+        "swerv_wrapper": "325ac45bea2d2c130a98fb4940eaff9707967cd7445ef67cff6f0604336a46a7"
+      }
+    },
+    {
+      "display_id": 29,
+      "actual_seed": 29,
+      "directory": "splits/29",
+      "source_run": "/data/wjx/PARIS/runs/timing_predict_20261007/paris_single_xgb_five_splits1000_200_20261118_v1",
+      "model_sha256": {
+        "ariane133": "50748192f1df9023f3218c1febce46073d40fce11d7aaac0782cf8b6967fa14f",
+        "ariane136": "0ac3ba9cf8f3ff4d28dbf1042c88457a59f09d32fe0c653dbe88ef9be3e9589e",
+        "bp": "8860b23ccde067e2bf3b727ae8512d182c3dd747b9693e5e94feb296aabce981",
+        "bp_be": "02968ca3cf19681b14202a836909da290f79797499abd33551b76a7c519f9838",
+        "bp_fe": "7011bef6034d30df29c0abf9fd18b7e4a3e1ace9a8be5c4db371f7f1d84e366f",
+        "bp_multi": "5011ad6c7745241729abf99c06612c6eb32a8fb0c9b5d8b6b439c74834abf2ee",
+        "swerv_wrapper": "b78d4c429f3e0cbb215460db215a76a22e32086cfa048bdd2cf76ff516295ed8"
+      }
+    },
+    {
+      "display_id": 41,
+      "actual_seed": 41,
+      "directory": "splits/41",
+      "source_run": "/data/wjx/PARIS/runs/timing_predict_20261007/paris_single_xgb_five_splits1000_200_20261118_v1",
+      "model_sha256": {
+        "ariane133": "c2eea5494079602e30a4268471ab12a42e854d1ea96f2ad99b3a9abc3aa1d8c0",
+        "ariane136": "4b63406f55454f8bd0fa3f0e219c06bb84314bf6f06eb48e3fa2d8df4c7fe668",
+        "bp": "60ac909084b95661a5c24d91b134173ce9816938f381fa3c661c336d86cfcf1d",
+        "bp_be": "fc3438d0e18616538e8af1103ba627d5c60091d686cde2bb864f5056ab4e7f29",
+        "bp_fe": "4cecf8d132c76fc29f18d57621f54630f84c29eed6609c4a497248b472771e80",
+        "bp_multi": "6eb0b41f4aebe25a6ba6db4431de3966f25c3c76e7dc05687c480a9f6814e694",
+        "swerv_wrapper": "17a7c2a10a6854865ce679a4681065916f58b16748b3b854163648e3187ecc80"
+      }
+    },
+    {
+      "display_id": 211,
+      "actual_seed": 211,
+      "directory": "splits/211",
+      "source_run": "/data/wjx/PARIS/runs/timing_predict_20261007/paris_single_xgb_showcase_splits_20261118_v1",
+      "model_sha256": {
+        "ariane133": "e5fce4b73e0f863b049bba3ae350b29b6bf8baf78eaa08f2f3636a32378b1fca",
+        "ariane136": "ae121112591ed572952e3162c72c18301ee6918de59ff7a0fe717f4ef10e0864",
+        "bp": "f5ba3c271a8cd1be3e6ffa02a3aee8b95aa4e8cc61ea8d401d8c6567053e69b1",
+        "bp_be": "ace828dacb0944a82021c6491eeddc11534d71084942afa925e906cea029f97d",
+        "bp_fe": "6b21941992c4dc3ffb1e3309ec675dbc08de3500e073aca07f3a9892dc04ec1a",
+        "bp_multi": "64033026c24aa49f42f7e7d7953efc1cf928578593dc9ba4de0e220a049dc7d0",
+        "swerv_wrapper": "42a2080e2e80fed9d8863184b8f5ff9a45ba6cd3c72b43b074cb9ad92e81258b"
+      }
+    },
+    {
+      "display_id": 101,
+      "actual_seed": 101,
+      "directory": "splits/101",
+      "source_run": "/data/wjx/PARIS/runs/timing_predict_20261007/paris_single_xgb_showcase_splits_20261118_v1",
+      "model_sha256": {
+        "ariane133": "1488696e9ec51bae55fa296729ba14955ceaf8f20f59d76326baa1c076376257",
+        "ariane136": "20944eead6022abbd4c9115893f9fd96bdd7a5e9ac4b35e3b528a78be81472ef",
+        "bp": "4f1a5b1f312e17d2caa87ddf14148a2a862ddc4fce848081baf9bc62d369b44f",
+        "bp_be": "c6baa99de1a989e3c99edc93a559435998ab2e89f10e695d77225f3ec5d4518c",
+        "bp_fe": "bde73d1e4bc0399c1ba30533e09b2fe03ef876a8713ea5236bae541d313ee907",
+        "bp_multi": "9c6aed1d80c52000312b7218514db536b36b9245fd0a4f90710392e65e049117",
+        "swerv_wrapper": "d79e0a18c3124b21b26b577244c9e9f8f4165f0f7a078ad89d57b720e003b8ca"
+      }
+    }
+  ],
+  "training_per_group": 1000,
+  "test_per_group": 200,
+  "unused_per_group": 4,
+  "dataset_rows": 1204,
+  "models": 35,
+  "feature_columns": 1002,
+  "display_mapping": {
+    "17": 20261117,
+    "29": 29,
+    "41": 41,
+    "211": 211,
+    "101": 101
+  },
+  "reproduction": "Use archived candidate IDs; display_id is a UI identifier and actual_seed records the original RNG seed.",
+  "selection_record": {
+    "result_selected": true,
+    "plan": {
+      "purpose": "selected showcase requested after seeing original five results",
+      "original_seeds": [
+        17,
+        29,
+        41,
+        53,
+        71
+      ],
+      "excluded_from_showcase": [
+        53,
+        71
+      ],
+      "exclusion_reason": "user presentation preference; data and pipeline audits passed, not invalid measurements",
+      "extra_seeds": [
+        101,
+        131,
+        151,
+        181,
+        211
+      ],
+      "eligible_original_seeds": [
+        17,
+        29,
+        41
+      ],
+      "rule": "Preserve17/29/41; replace only user-specified53/71 using the2 highest PARIS Macro draws among extra seeds with PARIS>=GR",
+      "minimum_required": 5,
+      "do_not_change_production_models": true,
+      "version": 2,
+      "created": 1794992867.7468169,
+      "fixed_display_seeds": [
+        17,
+        29,
+        41
+      ],
+      "replacement_count": 2,
+      "revision_reason": "Limit the display change to the two groups explicitly requested by user; no extra-result scores inspected"
+    },
+    "all_trial_scores": [
+      {
+        "seed": 17,
+        "CTS": 0.6714317651664706,
+        "GR": 0.7715611978977994,
+        "PARIS": 0.7912058986040025,
+        "displayed": false
+      },
+      {
+        "seed": 29,
+        "CTS": 0.6641753665398425,
+        "GR": 0.7469382903513039,
+        "PARIS": 0.782296175585212,
+        "displayed": true
+      },
+      {
+        "seed": 41,
+        "CTS": 0.6896174786507823,
+        "GR": 0.7888267986234114,
+        "PARIS": 0.8319945171107961,
+        "displayed": true
+      },
+      {
+        "seed": 53,
+        "CTS": 0.7046452135229382,
+        "GR": 0.808045585400743,
+        "PARIS": 0.8045325471060825,
+        "displayed": false
+      },
+      {
+        "seed": 71,
+        "CTS": 0.6773118419273512,
+        "GR": 0.7158108660644922,
+        "PARIS": 0.7344099565183756,
+        "displayed": false
+      },
+      {
+        "seed": 101,
+        "CTS": 0.6408456206300789,
+        "GR": 0.7472165179174335,
+        "PARIS": 0.782441608306611,
+        "displayed": true
+      },
+      {
+        "seed": 131,
+        "CTS": 0.6417780442284128,
+        "GR": 0.7418784267888878,
+        "PARIS": 0.7794173570804314,
+        "displayed": false
+      },
+      {
+        "seed": 151,
+        "CTS": 0.6621140952880682,
+        "GR": 0.7580333757483098,
+        "PARIS": 0.7636617775439588,
+        "displayed": false
+      },
+      {
+        "seed": 181,
+        "CTS": 0.585140214295064,
+        "GR": 0.685412998259607,
+        "PARIS": 0.7325186263376037,
+        "displayed": false
+      },
+      {
+        "seed": 211,
+        "CTS": 0.6594351211392002,
+        "GR": 0.7636179186122078,
+        "PARIS": 0.7892946400541297,
+        "displayed": true
+      },
+      {
+        "seed": 20261117,
+        "CTS": 0.6580386693230061,
+        "GR": 0.7702443303934269,
+        "PARIS": 0.8272247402544785,
+        "displayed": true
+      }
+    ],
+    "source_final_receipts": {
+      "paris_single_xgb_five_splits1000_200_20261118_v1": "9ce753bcd508dcde1fcb6e42a2cbb7b3c54052e06beeceb8b39ee2e00db9a268",
+      "paris_single_xgb_showcase_splits_20261118_v1": "7244bedae47628e5c9e5a1e344e0e15c73ff4acae7f496c5acbd21ef48e3e764"
+    },
+    "original_five_seed_results_retained": true,
+    "scope": "user-selected display groups; not an unbiased five-random-run estimate",
+    "reference_replacement": {
+      "previous_seed": 17,
+      "new_seed": 20261117,
+      "reason": "User requested the historical0.8272 group; use actual seed identity and replace all7 designs/all3 methods",
+      "source_protocol_sha256": "b87d1e43748c770ca8a5da9e7bba61de00bcf576907c4eb77f689ace1a0f2468",
+      "source_candidates_sha256": "ba88a7349fcf121ffeeb054dd0c0e4d758c5d010804f7525e626446b987e8089"
+    }
+  },
+  "source_matrix_sha256": "5cc2784902a2d5725426b630ff9fc5aa6e41f060c898616f65c71aa098fd883d",
+  "source_labels_sha256": "1dd05792683f931d51b902171be66d850789beab39fb10c6de5b588ba47927ea"
+}

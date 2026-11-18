@@ -1,0 +1,51 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 1fa4abd..8d71365 100755
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -14,7 +14,6 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+ 
+ include("openroad")
+ 
+-
+ if(USE_SYSTEM_OPENSTA)
+   if(NOT OPENSTA_HOME)
+     message(FATAL_ERROR "Please set external OPENSTA_HOME path.")
+diff --git a/src/cts/src/CMakeLists.txt b/src/cts/src/CMakeLists.txt
+index 56678e2..b6d473a 100644
+--- a/src/cts/src/CMakeLists.txt
++++ b/src/cts/src/CMakeLists.txt
+@@ -35,7 +35,8 @@ target_include_directories(cts_lib
+     ../include
+   PRIVATE
+     .
+-  ${LEMON_INCLUDE_DIRS}
++    ${PROJECT_SOURCE_DIR}/src/stt/third_party
++    ${LEMON_INCLUDE_DIRS}
+  )
+ 
+ target_include_directories(cts
+diff --git a/src/odb/src/3dblox/CMakeLists.txt b/src/odb/src/3dblox/CMakeLists.txt
+index ac1cc7c..735c95a 100644
+--- a/src/odb/src/3dblox/CMakeLists.txt
++++ b/src/odb/src/3dblox/CMakeLists.txt
+@@ -21,7 +21,7 @@ target_link_libraries(3dblox
+   PUBLIC
+     db
+     utl_lib
+-    yaml-cpp
++    yaml-cpp::yaml-cpp
+     OpenSTA
+   PRIVATE
+     defin
+diff --git a/src/stt/CMakeLists.txt b/src/stt/CMakeLists.txt
+index 44befde..201e01b 100644
+--- a/src/stt/CMakeLists.txt
++++ b/src/stt/CMakeLists.txt
+@@ -55,6 +55,7 @@ target_include_directories(stt_lib
+   PUBLIC
+     include
+   PRIVATE
++    third_party
+     ${LEMON_INCLUDE_DIRS}
+ )
+ 

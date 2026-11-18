@@ -1,0 +1,15 @@
+{
+  "MODEL_CARD.json": "a0cd29e02926488c353e2c8cb3270b5c4cfcf7fa160a6bb3cb39a7b4226a0582",
+  "SOURCE_SINGLE_SELECTIONS.json": "9ef695a88966fc27ea99c24a6bd61431efe07416b3a6f63013e79b2e266d9ab7",
+  "FEATURE_SCHEMA.json": "74c776f69a4d8807b8bd59c0a907931773fdc76c925584d9a7a0950537caefda",
+  "SOURCE_PROTOCOL.json": "b87d1e43748c770ca8a5da9e7bba61de00bcf576907c4eb77f689ace1a0f2468",
+  "SOURCE_SINGLE_FROZEN.json": "5f8d24c1def8ce91d7bdbf1c7a20697ee42b909185386b105a8c0d33b1a70aa8",
+  "SOURCE_SINGLE_FOLDS.json": "1a2bafe44b6eaed1461b32d54fe16b49dead2b896770609cacc0054908d4d55d",
+  "models/ariane136.json": "f23df8b39e17aea1dabe7624f92f1bd96bdcfa1e9c4a45464be1122ce62838c0",
+  "models/bp_be.json": "862c5725f8c83cda94a856ea5a4f9f737fe2ef96319b6e904eee394f313c375a",
+  "models/swerv_wrapper.json": "325ac45bea2d2c130a98fb4940eaff9707967cd7445ef67cff6f0604336a46a7",
+  "models/ariane133.json": "13a9057c4230a7c5373ff01c8a30ac944d82752c65dd9dd7aa23f18a380d85ea",
+  "models/bp_multi.json": "c75476e98ca946454b6ee484c40ed234ce6cd43b7391a34eeada0705c940b992",
+  "models/bp.json": "5ab66808e036b8572730f1b14ac836eabb6944b53e97542a0f6d43ad64e7e1b8",
+  "models/bp_fe.json": "59c87134b3172466cd8d5ea0dddd0f5e495cd6faf9f5bc0d12ca8e45796f5c6f"
+}

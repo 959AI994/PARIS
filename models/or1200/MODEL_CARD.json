@@ -1,0 +1,51 @@
+{
+  "name": "PARIS · or1200 XGBoost",
+  "status": "complete",
+  "algorithm": "paris.single-xgb.1",
+  "backend": "paris-single-xgb",
+  "designs": [
+    "or1200"
+  ],
+  "context": {
+    "pdk_id": "nangate45_3D",
+    "flow_id": "open3dbench.mol.native.c8e73fe.v1",
+    "corner": "nominal",
+    "feature_version": "paris4-original-candidate.2",
+    "time_unit": "ns"
+  },
+  "feature_count": 997,
+  "learned_estimators_per_design": 1,
+  "models": {
+    "or1200": {
+      "file": "models/or1200.json",
+      "training_ids": [
+        "or1200_dopp_41_00000",
+        "or1200_dopp_41_00001",
+        "or1200_dopp_41_00002",
+        "or1200_dopp_41_00003",
+        "or1200_dopp_41_00004",
+        "or1200_dopp_41_00005",
+        "or1200_dopp_41_00006",
+        "or1200_dopp_41_00007",
+        "or1200_dopp_41_00008",
+        "or1200_dopp_41_00009",
+        "or1200_dopp_41_00010",
+        "or1200_dopp_41_00011",
+        "or1200_dopp_41_00012",
+        "or1200_dopp_41_00013",
+        "or1200_dopp_41_00014",
+        "or1200_dopp_41_00015",
+        "or1200_dopp_41_00016",
+        "or1200_dopp_41_00017",
+        "or1200_dopp_41_00018",
+        "or1200_dopp_41_00019",
+        "or1200_dopp_41_00020",
+        "or1200_dopp_41_00021",
+        "or1200_dopp_41_00022",
+        "or1200_dopp_41_00023"
+      ],
+      "target_mean": 0.00026947102175423066,
+      "target_scale": 0.0069868742757197766
+    }
+  }
+}

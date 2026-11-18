@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "actual_split_seed": 20261117,
+  "replaced_seed": 17,
+  "seeds": [
+    20261117,
+    29,
+    41,
+    211,
+    101
+  ],
+  "original7design3methods_recomputed": true,
+  "all5means_and_stds_recomputed": true,
+  "old_trials_preserved": true,
+  "source200_ids_match": true,
+  "macro": {
+    "CTS": 0.6624224512565821,
+    "GR": 0.7633687711795567,
+    "PARIS": 0.8026503362622455
+  },
+  "std": {
+    "CTS": 0.01758083851895123,
+    "GR": 0.017509301356493718,
+    "PARIS": 0.02482962668316186
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "params": {
+    "n_estimators": 400,
+    "learning_rate": 0.03,
+    "min_child_weight": 3,
+    "reg_alpha": 0.1,
+    "subsample": 1.0,
+    "colsample_bytree": 0.8,
+    "tree_method": "hist",
+    "max_bin": 128,
+    "n_jobs": 2,
+    "random_state": 17,
+    "objective": "reg:squarederror"
+  },
+  "grid": [
+    {
+      "max_depth": 2,
+      "reg_lambda": 10.0
+    },
+    {
+      "max_depth": 2,
+      "reg_lambda": 100.0
+    },
+    {
+      "max_depth": 3,
+      "reg_lambda": 10.0
+    },
+    {
+      "max_depth": 3,
+      "reg_lambda": 100.0
+    }
+  ],
+  "target": "log1p(-DR_TNS)-log1p(-GR_TNS), historical raw-residual recipe unchanged",
+  "feature_count": 1002,
+  "cv_folds": 3,
+  "cv_seed": 17,
+  "selection": "3fold shuffledseed17 CV within training only; mean tau-b, then logcostMAE, then fixed grid order",
+  "feature_dtype": "float32",
+  "target_transform": "raw log-cost residual; no standardization"
+}

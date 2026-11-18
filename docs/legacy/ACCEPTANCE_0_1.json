@@ -1,0 +1,61 @@
+{
+  "release": "paris-eda 0.1.0",
+  "date": "2026-11-17",
+  "status": "passed",
+  "runtime": {
+    "os": "Linux x86_64",
+    "python": "3.10.16",
+    "installation": "wheel installed into a separate virtual environment; PYTHONPATH unset",
+    "dependencies": {
+      "numpy": "1.26.4",
+      "pandas": "2.3.3",
+      "scipy": "1.15.3",
+      "scikit-learn": "1.6.1",
+      "xgboost": "3.2.0",
+      "joblib": "1.5.1",
+      "pyarrow": "20.0.0",
+      "lightgbm": "4.7.0"
+    }
+  },
+  "installed_unit_tests": {
+    "passed": 20,
+    "failed": 0,
+    "elapsed_seconds": 9.34
+  },
+  "installed_cli": {
+    "version_help": "passed",
+    "init_and_packaged_resources": "passed",
+    "synthetic_demo_train_predict_screen": "passed",
+    "synthetic_new_candidates": 12,
+    "synthetic_selected_candidates": 5,
+    "synthetic_accuracy_claim": false
+  },
+  "real_saved_checkpoint": {
+    "design": "bp_fe",
+    "candidate_count": 1,
+    "measured_dr_tns_ns": -5654.962183915332,
+    "canonical_dr_tns_ns": -5654.962183915332,
+    "absolute_difference_ns": 0.0,
+    "gr_finite_endpoints": 5998,
+    "feature_columns_including_two_keys": 110,
+    "gr_source_sink_rows": 1918,
+    "matched_dr_wire_rows": 1918,
+    "new_detailed_routes": 0,
+    "cache_reused_without_sta": true,
+    "independent_accuracy_test": false
+  },
+  "original_frozen_model_compatibility": {
+    "archive_sha256": "9658f2dbffdac87e2266ab8798257bb6b4f3e11ea34ab159464dda5223aff872",
+    "known_feature_rows_with_test_ids": 3,
+    "score_bitwise_equal_to_original_predictor": true,
+    "candidate_order_identical": true,
+    "independent_accuracy_test": false
+  },
+  "limitations": [
+    "DR command orchestration tested with mock hooks; no new real detailed route was launched.",
+    "Real extraction checked on one saved design checkpoint; other OpenROAD/platform combinations need validation.",
+    "Portable native retraining is an explicit versioned recipe, not a reproduction of old experiment accuracy.",
+    "No measured new-design ranking accuracy, DR savings or wall-clock acceleration claim.",
+    "Python 3.11/3.12 CI configured but not executed in this acceptance run."
+  ]
+}

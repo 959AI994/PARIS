@@ -1,0 +1,52 @@
+{
+  "source_repository": "https://github.com/lamda-bbo/Open3DBench",
+  "integration_snapshot": {
+    "repository": "https://github.com/959AI994/PARIS4.0",
+    "commit": "deb1ee336129ce418d84585550151330a99239b0"
+  },
+  "components": [
+    {
+      "path": "Place-MoL",
+      "purpose": "Memory-on-logic placement and DREAMPlace integration",
+      "upstream_license": "See retained component licenses and upstream source notices"
+    },
+    {
+      "path": "OpenROAD-3D",
+      "purpose": "CTS/GR/DR flow and Nangate45 two-tier platform",
+      "upstream_license": "Retained flow/platform notices; platform LICENSE included"
+    },
+    {
+      "path": "Place-MoL/DREAMPlace",
+      "purpose": "CPU placement operators",
+      "license": "BSD-3-Clause",
+      "build_adaptations": [
+        "optional tests disabled by default",
+        "unused NCTUgr binary installation omitted",
+        "standalone OpenTimer examples/tests omitted from build"
+      ]
+    }
+  ],
+  "external_tools": {
+    "OpenROAD": {
+      "repository": "https://github.com/The-OpenROAD-Project/OpenROAD",
+      "commit": "c8e73fe7e222fb93a80b7ecb7ea7cc83df2459ec",
+      "OpenSTA_commit": "d1b2b3962cd47539c748bb163da5de2bd5d2f85f",
+      "slang_elab_commit": "ce38835520fbdf422304a6f6a2f1c437c3ba98c2",
+      "patch": "patches/OpenROAD-build.patch"
+    },
+    "yosys": {
+      "repository": "https://github.com/YosysHQ/yosys",
+      "commit": "1d2d777678f9f0856cb9d8a51d6d6447d4026c2f",
+      "abc_commit": "8827bafb7f288de6749dc6e30fa452f2040949c0"
+    }
+  },
+  "not_used": [
+    "Place-LoL"
+  ],
+  "excluded": [
+    "compiled binaries and build/install outputs",
+    "unrelated design databases",
+    "optional third-party benchmark datasets",
+    "NCTUgr binary"
+  ]
+}

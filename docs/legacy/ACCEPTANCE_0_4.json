@@ -1,0 +1,57 @@
+{
+  "version": "0.4.0",
+  "date": "2026-11-17",
+  "algorithm": "paris4.original.seed17.1",
+  "prediction_core": "byte-identical to 0.3.0",
+  "tests": {
+    "full_suite_before_final_DEF_extension": {
+      "passed": 39,
+      "seconds": 22.88
+    },
+    "final_input_and_ui_regression": {
+      "passed": 19,
+      "seconds": 2.37
+    }
+  },
+  "raw_input": {
+    "imports": [
+      "Verilog",
+      "DEF",
+      "project ZIP",
+      "server project directory"
+    ],
+    "stage_orchestration": "implemented; requires trusted PDK-specific server recipe",
+    "physical_end_to_end": "not validated in this release",
+    "deployed_preparation_profile": null
+  },
+  "browser_checks": [
+    "raw/prepared modes",
+    "missing-project start blocked",
+    "project template download",
+    "real feature catalog",
+    "field-name filtering and values",
+    "no console errors"
+  ],
+  "existing_dataset": {
+    "designs": 7,
+    "candidates": 485,
+    "files": [
+      {
+        "name": "features.parquet",
+        "rows": 485,
+        "columns": 863
+      },
+      {
+        "name": "source_sink.parquet",
+        "rows": 10665994,
+        "columns": 23
+      },
+      {
+        "name": "net_load.parquet",
+        "rows": 26962,
+        "columns": 14
+      }
+    ]
+  },
+  "existing_original_prediction_records_preserved": 2
+}

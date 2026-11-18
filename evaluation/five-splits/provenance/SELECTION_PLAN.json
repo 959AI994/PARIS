@@ -1,0 +1,30 @@
+{
+  "purpose": "selected showcase requested after seeing original five results",
+  "original_seeds": [
+    17,
+    29,
+    41,
+    53,
+    71
+  ],
+  "excluded_from_showcase": [
+    53,
+    71
+  ],
+  "exclusion_reason": "user presentation preference; data and pipeline audits passed, not invalid measurements",
+  "extra_seeds": [
+    101,
+    131,
+    151,
+    181,
+    211
+  ],
+  "eligible_original_seeds": [
+    17,
+    29,
+    41
+  ],
+  "rule": "choose5 highest PARIS Macro tau-b among candidate draws with PARIS>=GR; report entire candidate ledger and preserve original5 random estimate",
+  "minimum_required": 5,
+  "do_not_change_production_models": true
+}
