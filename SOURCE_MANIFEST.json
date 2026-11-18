@@ -22,8 +22,8 @@
       "bytes": 1238
     },
     "README.md": {
-      "sha256": "2ba746379daeb75cd7d39c3adc4242582e7ad37d4d36c44e68009abd2e264d6e",
-      "bytes": 3207
+      "sha256": "f5547caf03ddb592c4866a5c1137f3066bb86efd469472b67c91511d8752e00c",
+      "bytes": 3433
     },
     "configs/native.example.json": {
       "sha256": "4541ee0e078a6632974d570cbaa2d84964a9903ac90e77b32ad3b332dc9090e4",
@@ -44,6 +44,10 @@
     "docs/VALIDATION.md": {
       "sha256": "7ad244a1916878d7a2ec27ecd40d1c4df81899fc12fb0d8628ae897ef677c0eb",
       "bytes": 1226
+    },
+    "docs/assets/paris-workflow.png": {
+      "sha256": "a0b2d8c201e82790b328231cb43cf03f6241ccb7b5bb8392a3c884d0ce9791d4",
+      "bytes": 428136
     },
     "docs/legacy/ACCEPTANCE.json": {
       "sha256": "16077affe3eda5c381bbb5921805b61a58d826ce92dc1fe4911778e064a05538",
