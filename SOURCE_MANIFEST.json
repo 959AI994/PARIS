@@ -22,8 +22,8 @@
       "bytes": 1238
     },
     "README.md": {
-      "sha256": "f5547caf03ddb592c4866a5c1137f3066bb86efd469472b67c91511d8752e00c",
-      "bytes": 3433
+      "sha256": "af5b6fe8c9ac174bdcbfe14c194a978dbb944fd17804dd0e2244db303df11294",
+      "bytes": 4369
     },
     "configs/native.example.json": {
       "sha256": "4541ee0e078a6632974d570cbaa2d84964a9903ac90e77b32ad3b332dc9090e4",
@@ -48,6 +48,26 @@
     "docs/assets/paris-workflow.png": {
       "sha256": "a0b2d8c201e82790b328231cb43cf03f6241ccb7b5bb8392a3c884d0ce9791d4",
       "bytes": 428136
+    },
+    "docs/assets/web-evaluation.png": {
+      "sha256": "bc12cb671d2ba6c07381b6bb47241d42d679f61304bf132908166db16ca0cbeb",
+      "bytes": 481879
+    },
+    "docs/assets/web-inference.png": {
+      "sha256": "be41d4d0b8437d95c38e84871b2eaf23701c8dd67896de435eac93b7318e228e",
+      "bytes": 346014
+    },
+    "docs/assets/web-input.png": {
+      "sha256": "8e34667172a6b25ae477f957e0c41729baca2dca733bd8feb9db68dc810cdeb2",
+      "bytes": 417788
+    },
+    "docs/assets/web-iteration.png": {
+      "sha256": "a51fbbd345222a89fb32393b76d6b7f95e3871488839a3d3d385cb29afc8338f",
+      "bytes": 350602
+    },
+    "docs/assets/web-ranking.png": {
+      "sha256": "37bc9ac68f1afdb0b134badb5fb5ba8f06b12eaba1f351fe9e440cad007579f0",
+      "bytes": 457451
     },
     "docs/legacy/ACCEPTANCE.json": {
       "sha256": "16077affe3eda5c381bbb5921805b61a58d826ce92dc1fe4911778e064a05538",

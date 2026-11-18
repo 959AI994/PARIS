@@ -6,6 +6,38 @@ PARIS predicts post-routing total negative slack (TNS) and ranks 3D-IC partition
 
 [![PARIS workflow: feature extraction, training, inference and feedback](docs/assets/paris-workflow.png)](docs/assets/paris-workflow.png)
 
+## Web interface
+
+### 1. Prepare inputs
+
+Import a design project or load existing CTS/GR features.
+
+[![Prepare prediction inputs](docs/assets/web-input.png)](docs/assets/web-input.png)
+
+### 2. Run inference
+
+Check inputs, run PARIS and track processing progress.
+
+[![Run PARIS inference](docs/assets/web-inference.png)](docs/assets/web-inference.png)
+
+### 3. Rank and export
+
+Compare candidates within each design and export CSV or Parquet results.
+
+[![Candidate ranking and export](docs/assets/web-ranking.png)](docs/assets/web-ranking.png)
+
+### 4. Adapt the model
+
+Add labeled samples, train a design-specific model and manage versions.
+
+[![Design-specific model iteration](docs/assets/web-iteration.png)](docs/assets/web-iteration.png)
+
+### 5. Compare ranking quality
+
+Compare CTS, GR and PARIS on Open3DBench using Kendall's tau-b.
+
+[![Open3DBench model evaluation](docs/assets/web-evaluation.png)](docs/assets/web-evaluation.png)
+
 ## Install and launch
 
 Python 3.10–3.12. The physical-design flow requires Linux.
