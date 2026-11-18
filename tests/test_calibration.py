@@ -14,6 +14,8 @@ def test_new_design_budget_fails_before_eda_or_output(tmp_path):
 
 
 def test_calibration_labels_only_the_frozen_training_ids(tmp_path,monkeypatch):
+    from types import SimpleNamespace
+    monkeypatch.setattr('paris_tool.calibration.shutil.disk_usage',lambda _:SimpleNamespace(free=100*2**30))
     from test_single_xgb import dataset
     from paris_tool import mol_profile,mol_flow,collection
     source=tmp_path/'source';source.mkdir();(source/'PARIS_PROJECT.json').write_text(json.dumps(dict(design='chip')))

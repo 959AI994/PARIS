@@ -4,7 +4,7 @@
 
 ## 安装与启动
 
-Python 3.10+；运行 EDA 流程使用 Linux。
+Python 3.10–3.12；运行 EDA 流程使用 Linux。
 
 ```bash
 git clone https://github.com/959AI994/PARIS.git

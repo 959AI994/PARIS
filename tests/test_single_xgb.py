@@ -56,7 +56,10 @@ def test_real_single_estimator_roundtrip_and_label_boundary(tmp_path):
         features(tmp_path/'data')
 
 
-def test_gui_single_training_fixed_holdout_and_snapshot_isolation(tmp_path):
+def test_gui_single_training_fixed_holdout_and_snapshot_isolation(tmp_path,monkeypatch):
+    from types import SimpleNamespace
+    import shutil
+    monkeypatch.setattr(shutil,'disk_usage',lambda _:SimpleNamespace(free=100*2**30))
     ids,context=dataset(tmp_path/'data')
     fit(tmp_path/'data',tmp_path/'base','chip',ids[:24],context)
     app=App(tmp_path/'ui',[tmp_path],model=tmp_path/'base')

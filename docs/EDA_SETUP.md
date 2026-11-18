@@ -4,6 +4,8 @@
 
 Ubuntu 22.04/24.04：
 
+物理流程和网页模型迭代要求至少60GiB空闲磁盘。
+
 ```bash
 sudo apt-get update
 sudo apt-get install -y build-essential cmake ninja-build git flex bison \

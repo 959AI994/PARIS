@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "groups": [
+    "101",
+    "17",
+    "211",
+    "29",
+    "41"
+  ],
+  "models_verified": 35,
+  "all_predictions_bitwise_equal": true,
+  "all_metrics_match": true,
+  "refit": true,
+  "refit_models": 35,
+  "summary": {
+    "CTS": {
+      "mean": 0.6624224512565821,
+      "std": 0.01758083851895123
+    },
+    "GR": {
+      "mean": 0.7633687711795567,
+      "std": 0.01750930135649368
+    },
+    "PARIS": {
+      "mean": 0.8026503362622455,
+      "std": 0.024829626683161857
+    }
+  }
+}
