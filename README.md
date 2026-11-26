@@ -2,6 +2,13 @@
 
 PARIS predicts post-routing total negative slack (TNS) and ranks 3D-IC partition candidates using placement, CTS and global-routing features. It trains one XGBoost model per design and supports model updates as DR labels accumulate.
 
+## Contact
+
+If you have any questions, feel free to email me:
+
+- [Jingxin Wang](https://github.com/959AI994) · PhD Student · Shanghai Jiao Tong University
+- Email: jingxin.wang@sjtu.edu.cn
+  
 ## Workflow
 
 [![PARIS workflow: feature extraction, training, inference and feedback](docs/assets/paris-workflow.png)](docs/assets/paris-workflow.png)
