@@ -39,7 +39,13 @@ Add labeled samples, train a design-specific model and manage versions.
 
 [![Design-specific model iteration](docs/assets/web-iteration.png)](docs/assets/web-iteration.png)
 
-### 5. Compare ranking quality
+### 5. Model iteration
+
+The more training data and the greater the number of iterations, the better the performance of PARIS.
+
+[![Model iteration scaling law](docs/assets/PARIS-self-improvement.png)](docs/assets/PARIS-self-improvement.png)
+
+### 6. Compare ranking quality
 
 Compare CTS, GR and PARIS on Open3DBench using Kendall's tau-b.
 
