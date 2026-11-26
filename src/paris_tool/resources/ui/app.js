@@ -428,6 +428,7 @@ async function loadBenchmark() {
   document.querySelectorAll('[data-benchmark-mode]').forEach(b=>{b.classList.toggle('active',(multi?'five':'single')===b.dataset.benchmarkMode);b.disabled=b.dataset.benchmarkMode==='five'&&!base.five_splits;});
   if(!d)return;
   S.benchmarkDisplay=d;S.benchmarkMulti=multi;
+  renderBenchmarkRuntime(base.runtime);
   $('benchmark-split-label').textContent=multi?'5次划分 · 每次1000训练 / 200测试':'既有单次结果';
   $('benchmark-chart-subtitle').textContent=multi?'Kendall τ-b ↑ · 五次均值，误差线为标准差':'Kendall τ-b ↑ · 越高，排序与 DR 实测越一致';
   const names={CTS:'CTS 直接排序',GR:'GR 直接排序',PARIS:'PARIS'},cols=['CTS','GR','PARIS'],colors=['#9ba6b8','#61a5b7','#376ddd'];
@@ -454,6 +455,26 @@ $('benchmark-download').addEventListener('click',()=>{
     rows=[keys.join(','),...d.rows.map(r=>['design',r.design,'','',r.training,r.test,r.CTS,r.std.CTS,r.GR,r.std.GR,r.PARIS,r.std.PARIS].join(',')),['macro','Macro','','',d.training,d.test,d.macro.CTS,d.std.CTS,d.macro.GR,d.std.GR,d.macro.PARIS,d.std.PARIS].join(','),...d.per_seed.map(r=>['split','Macro',r.display_id??r.seed,r.seed,d.training,d.test,r.CTS,'',r.GR,'',r.PARIS,''].join(','))];
   }else{const keys=['design','training','test','CTS','GR','PARIS'];rows=[keys.join(','),...d.rows.map(r=>keys.map(k=>r[k]).join(',')),['Macro',d.training,d.test,d.macro.CTS,d.macro.GR,d.macro.PARIS].join(',')];}
   const url=URL.createObjectURL(new Blob(['\ufeff'+rows.join('\n')],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download=S.benchmarkMulti?'PARIS_Open3DBench_five_splits.csv':'PARIS_Open3DBench_1000_200.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+
+
+// Runtime metrics remain independent of the display split selector.
+function renderBenchmarkRuntime(runtime){
+  const panel=$('benchmark-runtime');panel.classList.toggle('hidden',!runtime);
+  if(!runtime)return;
+  const val=(v,digits=2)=>v===null||v===undefined?'未记录':Number(v).toFixed(digits);
+  const timed=(v)=>`<td class="number-cell" title="${v.n} 个候选，标准差 ${val(v.sd)} 秒">${val(v.mean)}</td>`;
+  $('benchmark-runtime-body').innerHTML=runtime.rows.map(r=>`<tr><td>${esc(r.design)}</td><td class="number-cell runtime-count">${r.physical_n} / ${r.prediction_n}</td>${timed(r.cts)}${timed(r.gr)}${timed(r.gr_partial_export)}<td class="number-cell">${val(r.feature_load_validation_aggregation_batch_seconds,3)}</td><td class="number-cell benchmark-value">${val(r.inference_batch_mean_seconds*1000,3)}</td></tr>`).join('');
+  $('benchmark-runtime-notes').innerHTML=runtime.notes.map(n=>`<p>${esc(n)}</p>`).join('');
+  $('benchmark-runtime-hardware').textContent=`本次测量：${runtime.date}，${runtime.hardware.cpu_model}，${runtime.hardware.threads} CPU 线程，无 GPU。聚合每设计测量 1 次，推理预热 5 次后测量 100 次。`;
+}
+$('benchmark-runtime-download').addEventListener('click',()=>{
+  const r=S.benchmark&&S.benchmark.runtime;if(!r)return;
+  const keys=['design','physical_candidates','prediction_candidates','cts_mean_seconds_per_candidate','cts_sd_seconds_per_candidate','gr_mean_seconds_per_candidate','gr_sd_seconds_per_candidate','partial_gr_feature_export_mean_seconds_per_candidate','partial_gr_feature_export_sd_seconds_per_candidate','full_feature_extraction_seconds_per_candidate','feature_table_load_validation_aggregation_seconds_per_batch','model_load_seconds','inference_mean_milliseconds_per_batch','inference_sd_milliseconds_per_batch','inference_repeats'];
+  const values=r.rows.map(x=>[x.design,x.physical_n,x.prediction_n,x.cts.mean,x.cts.sd,x.gr.mean,x.gr.sd,x.gr_partial_export.mean,x.gr_partial_export.sd,x.full_feature_extraction_seconds,x.feature_load_validation_aggregation_batch_seconds,x.model_load_seconds,x.inference_batch_mean_seconds*1000,x.inference_batch_sd_seconds*1000,x.inference_repeats]);
+  const cell=x=>x===null||x===undefined?'':`"${String(x).replaceAll('"','""')}"`;
+  const rows=[keys,...values].map(row=>row.map(cell).join(','));
+  const url=URL.createObjectURL(new Blob(['\ufeff'+rows.join('\n')],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='PARIS_Open3DBench_runtime.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
 
 // Method overview: keep the supplied full-resolution diagram available at native size.
