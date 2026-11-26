@@ -6,7 +6,7 @@ PARIS predicts post-routing total negative slack (TNS) and ranks 3D-IC partition
 
 If you have any questions, feel free to email me:
 
-- [Jingxin Wang](https://github.com/959AI994) · PhD Student · Shanghai Jiao Tong University
+- [Jingxin Wang](https://github.com/959AI994) · PhD Student · Shanghai Jiao Tong University · ACE Lab
 - Email: jingxin.wang@sjtu.edu.cn
   
 ## Workflow
